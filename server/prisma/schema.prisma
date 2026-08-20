@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User{
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  password String
+  university String
+  year Int
+  faculty String?
+  reputation Int @default(0)
+  createdAt DateTime @default(now())
+  notes Note[]
+  vote Vote[]
+  comments Comment[]
+@@map("users")
+}
+
+model Subject{
+  id String @id @default(cuid())
+  name String
+  code String?
+  faculty String
+  year Int
+  createdAt DateTime @default(now())
+
+  notes Note[]
+  @@map("subjects")
+}
+model Note{
+  id String @id @default(cuid()) 
+  userId String
+  subjectId String
+  title String 
+  fileUrl String
+  fileType String
+  fileSize Int
+  images String[]
+  tags String[]
+  semester String
+  upVoteCount Int
+  downVoteCount Int
+  score Int @default(0)
+  downloadCount Int @default(0)
+  viewCount Int @default(0)
+  createdAt DateTime @default(now())
+
+  uploadedBy User @relation(fields: [userId],references: [id])
+  subject Subject @relation(fields: [subjectId],references: [id])
+
+  votes Vote[]
+  comments Comment[]
+  @@map("notes")
+}
+
+model Vote{
+  id String @id @default(cuid())
+  noteId String
+  userId String
+  type String //up or down
+  createdAt DateTime @default(now())
+  note Note @relation(fields: [noteId],references: [id])
+  user User @relation(fields: [userId],references: [id])
+
+  @@unique([userId,noteId])
+  @@map("votes")
+}
+
+model Comment{
+  id String @id @default(cuid())
+  text String
+  //likes Int[]
+  parentId String?
+  userId String
+  noteId String
+  createdAt DateTime @default(now())
+  parentComment Comment? @relation("CommentReplies",fields: [parentId],references: [id])
+  relies Comment[]  @relation("CommentReplies")
+
+  user User @relation(fields: [userId],references: [id])
+  note Note @relation(fields: [noteId],references: [id])
+
+@@map("comments")
+}
