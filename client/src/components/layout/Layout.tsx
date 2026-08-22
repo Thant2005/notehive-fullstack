@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
 import { Outlet } from "react-router";
+import NoteActionBar from "../NoteActionBar";
 
 export default function Layout() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +12,12 @@ export default function Layout() {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 768);
     };
-    handleResize;
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <div className="min-h-screen max-w-full flex">
+    <div className="min-h-screen max-w-full mx-auto flex ">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -30,9 +30,14 @@ export default function Layout() {
         )}
       </AnimatePresence>
       <Sidebar isOpen={isOpen} isDesktop={isDesktop} setIsOpen={setIsOpen} />
-      <main className="flex-1">
-        <Header setIsOpen={setIsOpen} />
-        <Outlet />
+      <main className="max-w-full w-full ">
+        <div className="sticky top-0 ">
+          <Header setIsOpen={setIsOpen} />
+        </div>
+        <div className="mx-auto">
+          <NoteActionBar />
+          <Outlet />
+        </div>
       </main>
     </div>
   );

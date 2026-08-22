@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 function Header({ setIsOpen }: HeaderProps) {
   return (
-    <header className="max-w-full flex justify-between items-center bg-surface border-l border-b border-l-line border-b-line py-3 px-3 md:px-6">
+    <header className="max-w-full flex justify-between items-center bg-surface/80 backdrop-blur-lg border-l border-b border-l-line border-b-line py-3 px-3 md:px-6">
       <div className="flex items-center gap-2">
         <Menu
           size={25}

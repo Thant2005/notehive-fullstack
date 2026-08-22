@@ -17,8 +17,8 @@
                 <path
                   d="M20 9L28.5 14V24L20 29L11.5 24V14L20 9Z"
                   stroke="white"
-                  strokeWidth="2"
-                  stroke-linejoin="round"
+                  stroke-width="2"
+                  stoke-line="round"
                 ></path>
 
                 <path

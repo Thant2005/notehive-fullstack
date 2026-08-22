@@ -18,7 +18,7 @@ function Sidebar({ isOpen, isDesktop, setIsOpen }: SidbarProps) {
           animate={{ x: 0 }}
           exit={{ x: -300 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed md:static inset-y-0 left-0 z-40  bg-surface border-r  border-r-line"
+          className="sticky top-0 inset-y-0 left-0 z-40  overflow-y-auto  bg-surface border-r h-screen  border-r-line"
         >
           <div className="py-7 px-4">
             <div className="flex items-center gap-1">
@@ -28,7 +28,7 @@ function Sidebar({ isOpen, isDesktop, setIsOpen }: SidbarProps) {
               </h1>
               <X
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="text-muted ml-21 cursor-pointer bg-muted/10 p-1 rounded-md "
+                className="text-muted block md:hidden ml-21 cursor-pointer bg-muted/10 p-1 rounded-md "
               />
             </div>
 

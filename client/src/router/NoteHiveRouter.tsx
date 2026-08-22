@@ -2,13 +2,20 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "../components/layout/Layout";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn";
+import NoteList from "../components/NoteList";
 
 function NoteHiveRouter() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <NoteList /> },
+        {
+          path: "/note-list",
+          element: <Home />,
+        },
+      ],
     },
     {
       path: "sign-In",
