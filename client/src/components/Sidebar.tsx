@@ -18,7 +18,7 @@ function Sidebar({ isOpen, isDesktop, setIsOpen }: SidbarProps) {
           animate={{ x: 0 }}
           exit={{ x: -300 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="sticky top-0 inset-y-0 left-0 z-40  overflow-y-auto  bg-surface border-r h-screen  border-r-line"
+          className="md:sticky min-w-max fixed top-0 inset-y-0 left-0 z-40  overflow-y-auto  bg-surface border-r h-screen  border-r-line"
         >
           <div className="py-7 px-4">
             <div className="flex items-center gap-1">

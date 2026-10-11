@@ -1,5 +1,5 @@
 function SignIn() {
-  return <div>Hello world</div>;
+  return <div className="bg-red-500"></div>;
 }
 
 export default SignIn;
